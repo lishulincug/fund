@@ -293,7 +293,7 @@ def celue(funddata,jizhipoints):
             sell_point.append({'go up 4days':big})
         # elif (change[0]<change[1] and(change[0]<0.04)and len(big)>=3):
         #     sell_point.append({u'go up 4days': big})
-        if (len(small)>=4 and change[0]>0) or (len(small)>=3 and change[0]<-0.5 and change[1]<0.1):
+        if (len(small)>=4 and change[0]>0) or (len(small)>=3 and change[0]<-0.5 and change[1]<0.2):
             buy_points.append({'go down 3days':small})
     return {'sell':sell_point,'buy':buy_points}
 
@@ -330,7 +330,7 @@ def send_email(text):
         password = '123456lsl'  # input("请输入密码:")
         sender = username
         # sender=''
-        receiver = ['1627041882@qq.com']  # 'xxxxxxxxxx@qq.com','xxxxxxxxxx@126.com','994992333@qq.com','1847725033@qq.com','1847725033@qq.com','849281511@qq.com'
+        receiver = ['1627041882@qq.com','760140853@qq.com']  # 'xxxxxxxxxx@qq.com','xxxxxxxxxx@126.com','994992333@qq.com','1847725033@qq.com','1847725033@qq.com','849281511@qq.com'
         if sender =='':
             username = str(raw_input("Please Input Sender Email Address,for example:xxxxxxxxxx@126.com \n"))
             sender = username
@@ -435,7 +435,7 @@ def deb_print():
     M = now[12:14]
     S = now[15:]
     # print now
-    #print H,M, S
+    print H,M, S
     return H,M, S
 
 def check_time(H, M,S):
@@ -514,29 +514,29 @@ if __name__=='__main__':
     H = now[9:11]
     M = now[12:14]
     S = now[15:]
-    if(int(H)  ):#>= 19(H == "14" and M == "08" and S == "10") or
-        buysell1 = main_run()
-        print(str(buysell1))
-        sendmsg=''
-        # f = open("buysell.txt",'a')
-        for i in buysell1:
-            # write_str =  str(i) + '\n'
-            # f.write(write_str)
-            st = ' '
-            if i[1]['buy'] != []:
-                st = ' Buy '
-                for j in i[1]['buy']:
-                    for h in j:
-                        st += h + str(j[h])+ ' '
-            elif i[1]['sell'] != []:
-                st += ' Sell '
-                for k in i[1]['sell']:
-                    for t in k:
-                        st += t + str(k[t])+ ' '
-            if st != ' ':
-                sendmsg +=i[0][0]+','+i[0][1] + st+(' http://fund.eastmoney.com/%s.html'%i[0][0]) +('   http://www.efunds.com.cn/html/fund/%s_fundinfo.htm'%i[0][0])+'\n'
-        # print sendmsg
-        send_email(sendmsg)
+    #     if(int(H)  ):#>= 19(H == "14" and M == "08" and S == "10") or
+    #         buysell1 = main_run()
+    #         print(str(buysell1))
+    #         sendmsg=''
+    #         # f = open("buysell.txt",'a')
+    #         for i in buysell1:
+    #             # write_str =  str(i) + '\n'
+    #             # f.write(write_str)
+    #             st = ' '
+    #             if i[1]['buy'] != []:
+    #                 st = ' Buy '
+    #                 for j in i[1]['buy']:
+    #                     for h in j:
+    #                         st += h + str(j[h])+ ' '
+    #             elif i[1]['sell'] != []:
+    #                 st += ' Sell '
+    #                 for k in i[1]['sell']:
+    #                     for t in k:
+    #                         st += t + str(k[t])+ ' '
+    #             if st != ' ':
+    #                 sendmsg +=i[0][0]+','+i[0][1] + st+(' http://fund.eastmoney.com/%s.html'%i[0][0]) +('   http://www.efunds.com.cn/html/fund/%s_fundinfo.htm'%i[0][0])+'\n'
+    # print sendmsg
+    #   send_email(sendmsg)
     main1()
     # f.close()
     # itchat.send("@fil@%s" % 'buysell.txt', 'filehelper')
