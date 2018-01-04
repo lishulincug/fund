@@ -431,7 +431,7 @@ def send_email(text):
                     smtp.quit()
 def deb_print():
     now = time.strftime("%y-%m-%d %H:%M:%S", time.localtime())
-    H=now[9:11]
+    H=str(int(now[9:11])+8)
     M = now[12:14]
     S = now[15:]
     # print now
@@ -439,7 +439,7 @@ def deb_print():
     return H,M, S
 
 def check_time(H, M,S):
-    if  (int(H)+8 == 13 and M == "05" and S == "10") or(int(H)+8 == 14 and int(M) == 35  and S == "20"):#
+    if  (H == "13" and M == "05" and S == "10") or(H== "14" and int(M) == 35  and S == "20"):#
         # itchat.auto_login(hotReload=True)
         # itchat.run
         # curTime =  time.strftime("%y-%m-%d %H:%M:%S", time.localtime())
