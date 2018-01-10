@@ -336,7 +336,7 @@ def send_email(text):
         password = '123456lsl'  # input("请输入密码:")
         sender = username
         # sender=''
-        receiver = ['1627041882@qq.com']  # '760140853@qq.com','xxxxxxxxxx@qq.com','xxxxxxxxxx@126.com','994992333@qq.com','1847725033@qq.com','1847725033@qq.com','849281511@qq.com'
+        receiver = ['1627041882@qq.com','760140853@qq.com']  # '760140853@qq.com','xxxxxxxxxx@qq.com','xxxxxxxxxx@126.com','994992333@qq.com','1847725033@qq.com','1847725033@qq.com','849281511@qq.com'
         if sender =='':
             username = str(raw_input("Please Input Sender Email Address,for example:xxxxxxxxxx@126.com \n"))
             sender = username
@@ -411,7 +411,9 @@ def send_email(text):
                 smtp = smtplib.SMTP(smtpserver,25)
                 smtp.starttls()
                 smtp.login(username, password)
-                smtp.sendmail(sender, receiver, msg.as_string())
+                for jj in receiver:
+                    smtp.sendmail(sender, jj, msg.as_string())
+                    time.sleep(35)
                 smtp.quit()
                 print(u"邮件发送成功")
             except smtplib.SMTPException, e1:
