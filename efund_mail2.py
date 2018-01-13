@@ -246,8 +246,9 @@ def jizhi(funddata):
 #交易策略监测
 def celue(funddata,jizhipoints):
     todaydata = funddata[0]
-    data5days = [x[1] for x in funddata[:5:1]]
+    data5days = [x[1] for x in funddata[:6:1]]
     change = [x[3] for x in funddata[:5:1]]
+    change7 = [x[3] for x in funddata[:7:1]]
     change12days= [x[3] for x in funddata[:90:1]]
     if stdDeviation(change12days)<0.3:
         r=1.005;rmax=0.995
@@ -291,11 +292,11 @@ def celue(funddata,jizhipoints):
             elif (change[i]<0):
                 small.append(change[i])
         if len(big)>=4 and change[0]<0.2  :
-            sell_point.append({'go up 4days':big})
+            sell_point.append({'go up 4days':change7})
         # elif (change[0]<change[1] and(change[0]<0.04)and len(big)>=3):
         #     sell_point.append({u'go up 4days': big})
         if (len(small)>=4 and change[0]>0) or (len(small)>=3 and change[0]<-0.5 and change[1]<0.1):
-            buy_points.append({'go down 3days':small})
+            buy_points.append({'go down 3days':change7})
     return {'sell':sell_point,'buy':buy_points}
 
 def main_run(all_fund_list):
@@ -447,7 +448,11 @@ def deb_print():
     return H,M, S
 
 def check_time(H, M,S):
-    if(H == "14" and int(M) == 35  and S == "20"):#(H == "14" and M == "08" and S == "10") or
+    strtoday1 = datetime.datetime.strftime(datetime.datetime.now(), '%Y-%m-%d')
+    sdatetime = datetime.datetime.strptime(strtoday1, '%Y-%m-%d')
+    sdatetime.isoweekday()
+    #if sdatetime.isoweekday() == 7:
+    if(H == "14" and int(M) == 35  and S == "20")and(sdatetime.isoweekday() != 7)and(sdatetime.isoweekday() != 6):#(H == "14" and M == "08" and S == "10") or
         # itchat.auto_login(hotReload=True)
         # itchat.run
         # curTime =  time.strftime("%y-%m-%d %H:%M:%S", time.localtime())
