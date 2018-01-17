@@ -444,7 +444,7 @@ def deb_print():
     M = now[12:14]
     S = now[15:]
     # print now
-    #print H,M, S
+    print H,M, S
     return H,M, S
 
 def check_time(H, M,S):
@@ -452,7 +452,7 @@ def check_time(H, M,S):
     sdatetime = datetime.datetime.strptime(strtoday1, '%Y-%m-%d')
     sdatetime.isoweekday()
     #if sdatetime.isoweekday() == 7:
-    if(H == "14" and int(M) == 35  and S == "20")and(sdatetime.isoweekday() != 7)and(sdatetime.isoweekday() != 6):#(H == "14" and M == "08" and S == "10") or
+    if(H == "14" and int(M) == 30  and S == "20")and(sdatetime.isoweekday() != 7)and(sdatetime.isoweekday() != 6):#(H == "14" and M == "08" and S == "10") or
         # itchat.auto_login(hotReload=True)
         # itchat.run
         # curTime =  time.strftime("%y-%m-%d %H:%M:%S", time.localtime())
@@ -491,7 +491,7 @@ def main1():
         M = now[12:14]
         S = now[15:]
         # print H,S,M
-        print 'Start:'+'13:05' +' and 14:35 '+'send to email.'+"\n" +'please wait:'
+        print 'Start:'+'13:05' +' and 14:30 '+'send to email.'+"\n" +'please wait:'
 
         #    print time.localtime()
         #    print time.strftime("%y-%m-%d %H:%M:%S",time.localtime())
